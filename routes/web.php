@@ -13,6 +13,10 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
+$router->group(['prefix' => 'books'], function () use ($router) {
+   $router->get('/', 'BooksController@index');
+   $router->get('/{id}', 'BooksController@show');
+   $router->post('/create', 'BooksController@create');
+   $router->put('/update/{id}', 'BooksController@update');
+   $router->delete('/delete/{id}', 'BooksController@destroy');
 });
